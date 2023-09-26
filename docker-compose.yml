@@ -3,4 +3,4 @@ services:
   hello-algo:
     build: .
     ports:
-      - "8000:8000"
+      - "9899:9899"
