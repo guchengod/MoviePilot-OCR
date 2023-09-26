@@ -3,6 +3,9 @@ ENV LANG="C.UTF-8" \
     TZ="Asia/Shanghai" \
     REPO_URL="https://ghproxy.com/https://github.com/guchengod/MoviePilot-OCR.git" \
     WORKDIR="/app"
+
+RUN sed -i 's/http:\/\/deb.debian.org/https:\/\/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
+
 RUN apt-get update -y \
     && apt-get install -y \
         git \
@@ -21,8 +24,8 @@ RUN apt-get update -y \
         /var/tmp/*
 RUN git clone -b main ${REPO_URL} ${WORKDIR}
 WORKDIR ${WORKDIR}
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt \
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  --upgrade pip \
+    && pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt \
     && rm -rf \
         /tmp/* \
         /root/.cache \
