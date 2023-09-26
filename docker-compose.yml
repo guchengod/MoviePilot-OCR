@@ -1,6 +1,6 @@
 version: '3'
 services:
-  hello-algo:
+  moviepilot-ocr:
     build: .
     ports:
       - "9899:9899"
